@@ -5,7 +5,9 @@ RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recomme
     ca-certificates \
     curl \
     git \
+    libfftw3-dev \
     libpq-dev \
+    pkg-config \
   && rm -rf /var/lib/apt/lists/*
 
 # Set timezone to Europe/Helsinki
