@@ -8,3 +8,9 @@
 ## What is Futurice?
 
 ![logo](https://raw.githubusercontent.com/futurice/docker-base-images/master/logo.png)
+
+## To build images locally
+
+```sh
+docker build -t futurice/base-images:haskell-lts-5.15 haskell-lts-5.15
+```
