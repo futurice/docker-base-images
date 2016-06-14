@@ -27,7 +27,7 @@ RUN mkdir -p $HOME/.local/bin \
 # pre build some packages
 # not the whole Stackage though.
 RUN stack update
-RUN stack --resolver=lts-6.0 build --only-snapshot \
+RUN stack --resolver=lts-6.3 build --only-snapshot \
   DRBG \
   HUnit \
   JuicyPixels \
@@ -82,6 +82,7 @@ RUN stack --resolver=lts-6.0 build --only-snapshot \
   cereal \
   charset \
   cipher-aes128 \
+  clock \
   cmdargs \
   comonad \
   composition \
@@ -132,6 +133,7 @@ RUN stack --resolver=lts-6.0 build --only-snapshot \
   file-embed \
   filepath \
   focus \
+  foldl \
   free \
   generics-sop \
   ghc-prim \
@@ -140,6 +142,7 @@ RUN stack --resolver=lts-6.0 build --only-snapshot \
   hashable-time \
   haxl \
   hex \
+  hostname \
   hourglass \
   hspec \
   hspec-core \
@@ -153,6 +156,7 @@ RUN stack --resolver=lts-6.0 build --only-snapshot \
   http-media \
   http-types \
   http2 \
+  insert-ordered-containers \
   integer-gmp \
   intervals \
   iproute \
@@ -166,6 +170,7 @@ RUN stack --resolver=lts-6.0 build --only-snapshot \
   linear \
   list-t \
   lucid \
+  managed \
   markdown \
   memory \
   mime-types \
@@ -177,12 +182,14 @@ RUN stack --resolver=lts-6.0 build --only-snapshot \
   monadcryptorandom \
   monads-tf \
   mtl \
+  mwc-random \
   nats \
   network \
   network-uri \
   old-locale \
   old-time \
   operational \
+  optional-args \
   optparse-applicative \
   parallel \
   parallel-io \
@@ -243,10 +250,12 @@ RUN stack --resolver=lts-6.0 build --only-snapshot \
   string-conversions \
   stringsearch \
   syb \
+  system-fileio \
   system-filepath \
   tagged \
   tagsoup \
   template-haskell \
+  temporary \
   text \
   text-binary \
   tf-random \
@@ -257,6 +266,7 @@ RUN stack --resolver=lts-6.0 build --only-snapshot \
   transformers \
   transformers-base \
   transformers-compat \
+  turtle \
   tz \
   tzdata \
   unexceptionalio \
