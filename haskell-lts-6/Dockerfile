@@ -26,6 +26,3 @@ ENV LC_ALL en_US.UTF-8
 RUN mkdir -p $HOME/.local/bin \
   && curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C /usr/bin '*/stack' \
   && stack --version
-
-# Do update
-RUN stack update
