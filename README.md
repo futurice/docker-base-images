@@ -2,7 +2,7 @@
 
 ## Supported tags and respective Dockerfile links
 
-- [`haskell-lts-6-1` (haskell-lts-6/Dockerfile)](https://github.com/futurice/docker-base-images/blob/master/haskell-lts-6Dockerfile)
+- [`haskell-lts-6-2` (haskell-lts-6/Dockerfile)](https://github.com/futurice/docker-base-images/blob/master/haskell-lts-6/Dockerfile)
 - [`nodejs` (nodejs/Dockerfile)](https://github.com/futurice/docker-base-images/blob/master/nodejs/Dockerfile)
 
 ## What is Futurice?
@@ -12,5 +12,5 @@
 ## To build images locally
 
 ```sh
-docker build -t futurice/base-images:haskell-lts-6-1 haskell-lts-6
+docker build -t futurice/base-images:haskell-lts-6-2 haskell-lts-6
 ```
