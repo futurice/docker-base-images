@@ -10,6 +10,8 @@ RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recomme
     liblzma-dev \
     libpq-dev \
     libyaml-dev \
+    locales \
+    openssh-client \
     pkg-config \
   && rm -rf /var/lib/apt/lists/*
 
