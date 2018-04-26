@@ -13,5 +13,5 @@
 ## To build images locally
 
 ```sh
-docker build -t futurice/base-images:haskell-ghc-8.2.2-2 haskell-ghc-8.2.2
+docker build --no-cache -t futurice/base-images:haskell-ghc-8.2.2-$(date +"%Y%m%d") haskell-ghc-8.2.2
 ```
