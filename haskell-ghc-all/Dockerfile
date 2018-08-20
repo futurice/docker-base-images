@@ -1,17 +1,44 @@
-FROM phadej/ghc:8.2.2-ubuntu
+FROM ubuntu:xenial
 MAINTAINER Oleg Grenrus <oleg.grenrus@iki.fi>
 
+# hvr-ppa
+RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recommends install \
+    software-properties-common \
+    python-software-properties \
+    apt-utils \
+  && apt-add-repository -y "ppa:hvr/ghc" \
+  && rm -rf /var/lib/apt/lists/*
+
+# Dependencies
+RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recommends install \
+    cabal-install-2.4 \
+    ghc-8.4.3 \
+    ghc-8.2.2 \
+    ghc-8.0.2 \
+    ghc-7.10.3 \
+    git \
+  && rm -rf /var/lib/apt/lists/*
+
+# More deps
 RUN apt-get -yq update && apt-get -y upgrade && apt-get -yq --no-install-suggests --no-install-recommends install \
     build-essential \
     ca-certificates \
     curl \
     git \
+    graphviz \
+    libcairo2 \
+    libfftw3-bin \
     libfftw3-dev \
+    libgmp10 \
+    libgts-bin \
     liblapack-dev \
     liblzma-dev \
+    libpango1.0 \
     libpq-dev \
+    libpq5 \
     libyaml-dev \
     locales \
+    netbase \
     openssh-client \
     pkg-config \
     python-dev \
@@ -28,7 +55,7 @@ ENV LANGUAGE=en_US:en
 ENV LC_ALL=en_US.UTF-8
 
 # Use cabal
-ENV PATH=/root/.local/bin:/opt/ghc/8.2.2/bin:/opt/cabal/head/bin:/opt/happy/1.19.5/bin:/opt/alex/3.1.7/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH=/root/.local/bin:/opt/ghc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Install cabal-plan
 #
@@ -40,10 +67,17 @@ ENV PATH=/root/.local/bin:/opt/ghc/8.2.2/bin:/opt/cabal/head/bin:/opt/happy/1.19
 RUN true \
     && mkdir -p $HOME/.local/bin \
     && cabal update \
-    && cabal new-install cabal-plan --constraint=cabal-plan==0.3.0.0 --constraint='cabal-plan +exe' --symlink-bindir=$HOME/.local/bin \
+    && echo 'cabal-version: 2.2'      > z.cabal \
+    && echo 'name: z'                >> z.cabal \
+    && echo 'version: 0'             >> z.cabal \
+    && echo 'library'                >> z.cabal \
+    && echo '  build-depends: aeson' >> z.cabal \
+    && cat z.cabal \
+    && (cabal new-build || true) \
+    && rm -f z.cabal \
+    && cabal new-install cabal-plan --constraint=cabal-plan==0.4.0.0 --constraint='cabal-plan +exe' --symlink-bindir=$HOME/.local/bin \
     && cp $HOME/.local/bin/$(readlink $HOME/.local/bin/cabal-plan) $HOME/cabal-plan \
     && mv $HOME/cabal-plan $HOME/.local/bin \
     && ls -l $HOME/.local/bin \
-    && cp $HOME/.cabal/packages/hackage.haskell.org/01-index.tar.gz $HOME/ \
     && rm -rf $HOME/.cabal $HOME/.ghc \
     && echo "cabal-plan installed"
