@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-MAINTAINER Oleg Grenrus <oleg.grenrus@iki.fi>
+MAINTAINER Toni Okuogume <toni.okuogume@futurice.com>
 
 # hvr-ppa
 RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recommends install \
@@ -12,6 +12,7 @@ RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recomme
 # Dependencies
 RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recommends install \
     cabal-install-2.4 \
+    ghc-8.6.5 \
     ghc-8.4.3 \
     ghc-8.2.2 \
     ghc-8.0.2 \
