@@ -16,7 +16,6 @@ RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recomme
     ghc-8.4.3 \
     ghc-8.2.2 \
     ghc-8.0.2 \
-    ghc-7.10.3 \
     git \
   && rm -rf /var/lib/apt/lists/*
 
