@@ -18,6 +18,6 @@ docker build --no-cache -t futurice/base-images:haskell-ghc-8.2.2-$(date +"%Y%m%
 
 ```sh
 docker build --no-cache -t haskell-ghc-all:$(date +"%Y%m%d") haskell-ghc-all
-docker tag haskell-ghc-all:$(date +"%Y%m%d") 794457758780.dkr.ecr.eu-central-1.amazonaws.com/haskell-ghc-all:$(date +"%Y%m%d")
-docker push 794457758780.dkr.ecr.eu-central-1.amazonaws.com/haskell-ghc-all:$(date +"%Y%m%d")
+docker tag haskell-ghc-all:$(date +"%Y%m%d") futurice/base-images:haskell-ghc-all-$(date +"%Y%m%d")
+docker push futurice/base-images:haskell-ghc-all-$(date +"%Y%m%d")
 ```
