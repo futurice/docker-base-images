@@ -11,11 +11,10 @@ RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recomme
 
 # Dependencies
 RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recommends install \
-    cabal-install-2.4 \
+    cabal-install-3.0 \
+    ghc-8.8.1 \
     ghc-8.6.5 \
     ghc-8.4.3 \
-    ghc-8.2.2 \
-    ghc-8.0.2 \
     git \
   && rm -rf /var/lib/apt/lists/*
 
@@ -75,7 +74,7 @@ RUN true \
     && cat z.cabal \
     && (cabal new-build || true) \
     && rm -f z.cabal \
-    && cabal new-install cabal-plan --constraint=cabal-plan==0.4.0.0 --constraint='cabal-plan +exe' --symlink-bindir=$HOME/.local/bin \
+    && cabal new-install cabal-plan --constraint=cabal-plan==0.6.2.0 --constraint='cabal-plan +exe' --installdir=$HOME/.local/bin \
     && cp $HOME/.local/bin/$(readlink $HOME/.local/bin/cabal-plan) $HOME/cabal-plan \
     && mv $HOME/cabal-plan $HOME/.local/bin \
     && ls -l $HOME/.local/bin \
