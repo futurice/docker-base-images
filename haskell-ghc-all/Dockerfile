@@ -11,8 +11,8 @@ RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recomme
 
 # Dependencies
 RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recommends install \
-    cabal-install-3.0 \
-    ghc-8.8.1 \
+    cabal-install-3.2 \
+    ghc-8.8.4 \
     ghc-8.6.5 \
     ghc-8.4.3 \
     git \
