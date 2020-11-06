@@ -4,7 +4,6 @@ MAINTAINER Toni Okuogume <toni.okuogume@futurice.com>
 # hvr-ppa
 RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recommends install \
     software-properties-common \
-    python-software-properties \
     apt-utils \
   && apt-add-repository -y "ppa:hvr/ghc" \
   && rm -rf /var/lib/apt/lists/*
