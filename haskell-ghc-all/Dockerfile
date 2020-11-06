@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 MAINTAINER Toni Okuogume <toni.okuogume@futurice.com>
 
 # hvr-ppa
