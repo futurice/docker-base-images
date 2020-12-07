@@ -44,7 +44,7 @@ RUN apt-get -yq update && apt-get -y upgrade && apt-get -yq --no-install-suggest
   && rm -rf /var/lib/apt/lists/*
 
 # Set timezone to Europe/Helsinki
-RUN echo 'Europe/Helsinki' > /etc/timezone && rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
+RUN echo 'Europe/Helsinki' > /etc/timezone && ln -s /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
 
 # Set the locale
 RUN locale-gen en_US.UTF-8
