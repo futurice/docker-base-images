@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:focal
 MAINTAINER Toni Okuogume <toni.okuogume@futurice.com>
 
 # hvr-ppa
@@ -11,9 +11,9 @@ RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recomme
 # Dependencies
 RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recommends install \
     cabal-install-3.2 \
+    ghc-8.10.4 \
     ghc-8.8.4 \
     ghc-8.6.5 \
-    ghc-8.4.3 \
     git \
   && rm -rf /var/lib/apt/lists/*
 
@@ -44,7 +44,7 @@ RUN apt-get -yq update && apt-get -y upgrade && apt-get -yq --no-install-suggest
   && rm -rf /var/lib/apt/lists/*
 
 # Set timezone to Europe/Helsinki
-RUN echo 'Europe/Helsinki' > /etc/timezone && ln -s /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
+RUN echo 'Europe/Helsinki' > /etc/timezone && rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
 
 # Set the locale
 RUN locale-gen en_US.UTF-8
@@ -73,7 +73,7 @@ RUN true \
     && cat z.cabal \
     && (cabal new-build || true) \
     && rm -f z.cabal \
-    && cabal new-install cabal-plan --constraint=cabal-plan==0.6.2.0 --constraint='cabal-plan +exe' --installdir=$HOME/.local/bin \
+    && cabal new-install cabal-plan --constraint=cabal-plan==0.7.2.0 --constraint='cabal-plan +exe' --installdir=$HOME/.local/bin \
     && cp $HOME/.local/bin/$(readlink $HOME/.local/bin/cabal-plan) $HOME/cabal-plan \
     && mv $HOME/cabal-plan $HOME/.local/bin \
     && ls -l $HOME/.local/bin \
