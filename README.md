@@ -3,6 +3,7 @@
 ## Supported tags and respective Dockerfile links
 
 - [`haskell-ghc-all(few latest major ghc releases)` (haskell-ghc-all/Dockerfile)](https://github.com/futurice/docker-base-images/blob/master/haskell-ghc-all/Dockerfile)
+- [`haskell-ghc-amazon-linux` (haskell-ghc-amazon-linux/Dockerfile)](https://github.com/futurice/docker-base-images/blob/master/haskell-ghc-amazon-linux/Dockerfile)
 
 ## What is Futurice?
 
