@@ -2,9 +2,8 @@
 
 ## Supported tags and respective Dockerfile links
 
-- [`haskell-ghc-8.0.2-1` (haskell-ghc-8.0.2/Dockerfile)](https://github.com/futurice/docker-base-images/blob/master/haskell-ghc-8.0.2/Dockerfile)
-- [`haskell-lts-6-2` (haskell-lts-6/Dockerfile)](https://github.com/futurice/docker-base-images/blob/master/haskell-lts-6/Dockerfile)
-- [`nodejs` (nodejs/Dockerfile)](https://github.com/futurice/docker-base-images/blob/master/nodejs/Dockerfile)
+- [`haskell-ghc-all(few latest major ghc releases)` (haskell-ghc-all/Dockerfile)](https://github.com/futurice/docker-base-images/blob/master/haskell-ghc-all/Dockerfile)
+- [`haskell-ghc-amazon-linux` (haskell-ghc-amazon-linux/Dockerfile)](https://github.com/futurice/docker-base-images/blob/master/haskell-ghc-amazon-linux/Dockerfile)
 
 ## What is Futurice?
 
@@ -12,9 +11,7 @@
 
 ## To build images locally
 
-```sh
-docker build --no-cache -t futurice/base-images:haskell-ghc-8.2.2-$(date +"%Y%m%d") haskell-ghc-8.2.2
-```
+Build locally base image for haskell-mega-repo and push it to repository
 
 ```sh
 docker build --no-cache -t haskell-ghc-all:$(date +"%Y%m%d") haskell-ghc-all
