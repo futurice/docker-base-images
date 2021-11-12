@@ -9,12 +9,19 @@
 
 ![logo](https://raw.githubusercontent.com/futurice/docker-base-images/master/logo.png)
 
-## To build images locally
+## Build for production
 
-Build locally base image for haskell-mega-repo and push it to repository
+Multiarch builds for Docker Hub.
 
 ```sh
+docker buildx build \
+    --push \
+    --platform linux/arm64,linux/amd64 \
+    --tag futurice/base-images:haskell-ghc-all-$(date +"%Y%m%d") .
+```
+
+## Bbuild images locally
+
+```
 docker build --no-cache -t haskell-ghc-all:$(date +"%Y%m%d") haskell-ghc-all
-docker tag haskell-ghc-all:$(date +"%Y%m%d") futurice/base-images:haskell-ghc-all-$(date +"%Y%m%d")
-docker push futurice/base-images:haskell-ghc-all-$(date +"%Y%m%d")
 ```
