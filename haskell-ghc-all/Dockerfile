@@ -1,20 +1,9 @@
 FROM ubuntu:focal
 MAINTAINER Toni Okuogume <toni.okuogume@futurice.com>
 
-# hvr-ppa
 RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recommends install \
     software-properties-common \
     apt-utils \
-  && apt-add-repository -y "ppa:hvr/ghc" \
-  && rm -rf /var/lib/apt/lists/*
-
-# Dependencies
-RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recommends install \
-    cabal-install-3.2 \
-    ghc-8.10.4 \
-    ghc-8.8.4 \
-    ghc-8.6.5 \
-    git \
   && rm -rf /var/lib/apt/lists/*
 
 # More deps
@@ -41,7 +30,19 @@ RUN apt-get -yq update && apt-get -y upgrade && apt-get -yq --no-install-suggest
     pkg-config \
     python-dev \
     zip \
+    llvm \
+    libnuma-dev \
+    libffi-dev libffi7 libgmp-dev libncurses-dev libncurses5 libtinfo5 \
   && rm -rf /var/lib/apt/lists/*
+
+# ghcup for GHC, Cabal
+RUN curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | \
+    BOOTSTRAP_HASKELL_NONINTERACTIVE=1 \
+    BOOTSTRAP_HASKELL_GHC_VERSION=8.10.7 \
+    BOOTSTRAP_HASKELL_CABAL_VERSION=3.4.1.0 \
+    sh
+ENV PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:$PATH
+ENV GHCVER="8.10.7"
 
 # Set timezone to Europe/Helsinki
 RUN echo 'Europe/Helsinki' > /etc/timezone && rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
@@ -52,30 +53,19 @@ ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US:en
 ENV LC_ALL=en_US.UTF-8
 
-# Use cabal
-ENV PATH=/root/.local/bin:/opt/ghc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-# Install cabal-plan
+# Install cabal-plan -- sanity build check
 #
-# - make directory to store binaries (it's already in the PATH)
 # - cabal update, new-install cabal-plan
 # - new-install creates symbolic link: copy over
-# - store 01-index.tar.gz, and wipe all of ~/.cabal & ~/.ghc
+# - wipe all of ~/.cabal & ~/.ghc
 # - profit!
+
 RUN true \
-    && mkdir -p $HOME/.local/bin \
-    && cabal update \
-    && echo 'cabal-version: 2.2'      > z.cabal \
-    && echo 'name: z'                >> z.cabal \
-    && echo 'version: 0'             >> z.cabal \
-    && echo 'library'                >> z.cabal \
-    && echo '  build-depends: aeson' >> z.cabal \
-    && cat z.cabal \
-    && (cabal new-build || true) \
-    && rm -f z.cabal \
-    && cabal new-install cabal-plan --constraint=cabal-plan==0.7.2.0 --constraint='cabal-plan +exe' --installdir=$HOME/.local/bin \
-    && cp $HOME/.local/bin/$(readlink $HOME/.local/bin/cabal-plan) $HOME/cabal-plan \
-    && mv $HOME/cabal-plan $HOME/.local/bin \
-    && ls -l $HOME/.local/bin \
-    && rm -rf $HOME/.cabal $HOME/.ghc \
+    && cabal new-update \
+    && cabal new-install cabal-plan --constraint=cabal-plan==0.7.2.1 --constraint='cabal-plan +exe' --installdir=/root/.cabal/bin \
+    && cp /root/.cabal/bin/$(readlink /root/.cabal/bin/cabal-plan) /root/cabal-plan \
+    && rm -rf /root/.cabal /root/.ghc \
+    && mkdir -p /root/.cabal/bin \
+    && mv /root/cabal-plan /root/.cabal/bin \
+    && ls -l /root/.cabal/bin \
     && echo "cabal-plan installed"
