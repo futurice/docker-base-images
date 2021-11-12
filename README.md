@@ -20,7 +20,7 @@ docker buildx build \
     --tag futurice/base-images:haskell-ghc-all-$(date +"%Y%m%d") .
 ```
 
-## Bbuild images locally
+## Build locally
 
 ```
 docker build --no-cache -t haskell-ghc-all:$(date +"%Y%m%d") haskell-ghc-all
