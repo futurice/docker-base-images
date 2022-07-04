@@ -38,11 +38,11 @@ RUN apt-get -yq update && apt-get -y upgrade && apt-get -yq --no-install-suggest
 # ghcup for GHC, Cabal
 RUN curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | \
     BOOTSTRAP_HASKELL_NONINTERACTIVE=1 \
-    BOOTSTRAP_HASKELL_GHC_VERSION=8.10.7 \
-    BOOTSTRAP_HASKELL_CABAL_VERSION=3.4.1.0 \
+    BOOTSTRAP_HASKELL_GHC_VERSION=9.0.2 \
+    BOOTSTRAP_HASKELL_CABAL_VERSION=3.6.2.0 \
     sh
 ENV PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:$PATH
-ENV GHCVER="8.10.7"
+ENV GHCVER="9.0.2"
 
 # Set timezone to Europe/Helsinki
 RUN echo 'Europe/Helsinki' > /etc/timezone && rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
