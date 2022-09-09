@@ -20,6 +20,14 @@ docker buildx build \
     --tag futurice/base-images:haskell-ghc-all-$(date +"%Y%m%d") .
 ```
 
+```sh
+docker buildx build \
+    --push \
+    --platform linux/amd64 \
+    --tag futurice/base-images:haskell-ghc-amazon-linux-$(date +"%Y%m%d") .
+```
+
+
 ## Build locally
 
 ```
