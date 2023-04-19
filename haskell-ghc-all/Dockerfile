@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 MAINTAINER Toni Okuogume <toni.okuogume@futurice.com>
 
 RUN apt-get -yq update && apt-get -yq --no-install-suggests --no-install-recommends install \
