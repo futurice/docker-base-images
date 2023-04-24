@@ -1,4 +1,5 @@
 FROM amazonlinux:2
+LABEL org.opencontainers.image.authors="Jorge Rodriguez <jorge.rodriguez@futurice.com>"
 
 ENV TZ=Europe/Helsinki
 
