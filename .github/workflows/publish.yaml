@@ -1,0 +1,34 @@
+---
+name: Publish Docker Images
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - haskell-ghc-all/*
+      - haskell-ghc-amazon-linux/*
+  schedule:
+    - cron: "0 5 * * SUN"
+
+permissions:
+  id-token: write
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  multiarch:
+    uses: ./.github/workflows/reusable.yaml
+    secrets: inherit
+    with:
+      context: haskell-ghc-all
+      platforms: linux/arm64,linux/amd64
+
+  aws:
+    uses: ./.github/workflows/reusable.yaml
+    secrets: inherit
+    with:
+      context: haskell-ghc-amazon-linux
+      platforms: linux/amd64
