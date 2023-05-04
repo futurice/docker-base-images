@@ -9,6 +9,7 @@ on:
       - haskell-ghc-amazon-linux/*
   schedule:
     - cron: "0 5 * * SUN"
+  workflow_dispatch:
 
 permissions:
   id-token: write
