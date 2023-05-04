@@ -14,25 +14,30 @@ RUN apt-get -yq update && apt-get -y upgrade && apt-get -yq --no-install-suggest
   git \
   graphviz \
   libcairo2 \
+  libffi-dev \
+  libffi8ubuntu1 \
   libfftw3-bin \
   libfftw3-dev \
+  libgmp-dev \
   libgmp10 \
   libgts-bin \
   liblapack-dev \
   liblzma-dev \
+  libncurses-dev \
+  libncurses5 \
+  libnuma-dev \
   libpango1.0 \
   libpq-dev \
   libpq5 \
+  libtinfo5 \
   libyaml-dev \
+  llvm \
   locales \
   netbase \
   openssh-client \
   pkg-config \
   python3-dev \
   zip \
-  llvm \
-  libnuma-dev \
-  libffi-dev libffi7 libgmp-dev libncurses-dev libncurses5 libtinfo5 \
   && rm -rf /var/lib/apt/lists/*
 
 # ghcup for GHC, Cabal
