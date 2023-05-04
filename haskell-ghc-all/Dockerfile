@@ -45,7 +45,7 @@ ENV PATH=/root/.cabal/bin:/root/.ghcup/bin:/root/.local/bin:$PATH
 ENV GHCVER="9.0.2"
 
 # Set timezone to Europe/Helsinki
-RUN echo 'Europe/Helsinki' > /etc/timezone && rm /etc/localtime && ln -s /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
+RUN echo 'Europe/Helsinki' > /etc/timezone && rm /etc/localtime || true && ln -s /usr/share/zoneinfo/Europe/Helsinki /etc/localtime
 
 # Set the locale
 RUN locale-gen en_US.UTF-8
