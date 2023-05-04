@@ -28,7 +28,7 @@ RUN apt-get -yq update && apt-get -y upgrade && apt-get -yq --no-install-suggest
   netbase \
   openssh-client \
   pkg-config \
-  python-dev \
+  python3-dev \
   zip \
   llvm \
   libnuma-dev \
