@@ -67,7 +67,7 @@ ENV LC_ALL=en_US.UTF-8
 
 RUN true \
   && cabal new-update \
-  && cabal new-install cabal-plan --constraint=cabal-plan==0.7.2.1 --constraint='cabal-plan +exe' --installdir=/root/.cabal/bin \
+  && cabal new-install -j cabal-plan --constraint=cabal-plan==0.7.2.1 --constraint='cabal-plan +exe' --installdir=/root/.cabal/bin \
   && cp /root/.cabal/bin/$(readlink /root/.cabal/bin/cabal-plan) /root/cabal-plan \
   && rm -rf /root/.cabal /root/.ghc \
   && mkdir -p /root/.cabal/bin \

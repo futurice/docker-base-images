@@ -26,6 +26,7 @@ jobs:
     with:
       context: haskell-ghc-all
       platforms: linux/arm64,linux/amd64
+      runner_labels: "['self-hosted', 'futurice-jammy-16-core']"
 
   aws:
     uses: ./.github/workflows/reusable.yaml
