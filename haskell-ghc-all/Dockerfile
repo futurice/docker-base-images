@@ -65,12 +65,11 @@ ENV LC_ALL=en_US.UTF-8
 # - wipe all of ~/.cabal & ~/.ghc
 # - profit!
 
-RUN true \
-  && cabal new-update \
-  && cabal new-install -j cabal-plan --constraint=cabal-plan==0.7.2.1 --constraint='cabal-plan +exe' --installdir=/root/.cabal/bin \
-  && cp /root/.cabal/bin/$(readlink /root/.cabal/bin/cabal-plan) /root/cabal-plan \
-  && rm -rf /root/.cabal /root/.ghc \
-  && mkdir -p /root/.cabal/bin \
-  && mv /root/cabal-plan /root/.cabal/bin \
-  && ls -l /root/.cabal/bin \
-  && echo "cabal-plan installed"
+RUN cabal new-update
+RUN cabal new-install -j cabal-plan --constraint=cabal-plan==0.7.2.1 --constraint='cabal-plan +exe' --installdir=/root/.cabal/bin
+RUN cp /root/.cabal/bin/$(readlink /root/.cabal/bin/cabal-plan) /root/cabal-plan
+RUN rm -rf /root/.cabal /root/.ghc
+RUN mkdir -p /root/.cabal/bin
+RUN mv /root/cabal-plan /root/.cabal/bin
+RUN ls -l /root/.cabal/bin
+RUN echo "cabal-plan installed"
